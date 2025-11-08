@@ -8,12 +8,10 @@ import { useToast } from '@/hooks/use-toast';
 import type { SkinAnalysis, Product } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { ProductCard } from '@/components/product-card';
-import { FileUp, Bot, Sparkles, Droplets, FlaskConical, Target, Wand2 } from 'lucide-react';
+import { FileUp, Bot, Sparkles, Droplets, FlaskConical, Target, Wand2, X } from 'lucide-react';
 
 interface AnalysisResult {
   analysis: SkinAnalysis;
@@ -79,8 +77,21 @@ export function DashboardClient() {
   };
 
   const handleUploadClick = () => {
-    fileInputRef.current?.click();
+    if (!preview) {
+        fileInputRef.current?.click();
+    }
   };
+  
+  const handleRemoveImage = () => {
+    setPreview(null);
+    setFile(null);
+    setResult(null);
+    setError(null);
+    // Reset file input value
+    if(fileInputRef.current) {
+        fileInputRef.current.value = '';
+    }
+  }
 
   const getSkinTypeIcon = (skinType: string) => {
     const lowerCaseSkinType = skinType.toLowerCase();
@@ -91,8 +102,8 @@ export function DashboardClient() {
   };
 
   return (
-    <div className="grid gap-8 grid-cols-1 lg:grid-cols-3">
-      <Card className="lg:col-span-1">
+    <div className="grid gap-8 grid-cols-1">
+      <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileUp /> Your Photo
@@ -101,19 +112,32 @@ export function DashboardClient() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div
-            className="aspect-square w-full rounded-lg border-2 border-dashed border-border flex items-center justify-center bg-muted/20 cursor-pointer"
-            onClick={handleUploadClick}
+            className="aspect-square w-full max-w-md mx-auto rounded-lg border-2 border-dashed border-border flex items-center justify-center bg-muted/20 relative"
           >
             {preview ? (
-              <Image
-                src={preview}
-                alt="Skin preview"
-                width={400}
-                height={400}
-                className="object-cover rounded-md h-full w-full"
-              />
+                <>
+                    <Image
+                        src={preview}
+                        alt="Skin preview"
+                        width={400}
+                        height={400}
+                        className="object-cover rounded-md h-full w-full"
+                    />
+                    <Button
+                        variant="destructive"
+                        size="icon"
+                        className="absolute top-2 right-2 rounded-full h-8 w-8"
+                        onClick={handleRemoveImage}
+                    >
+                        <X className="h-4 w-4" />
+                        <span className="sr-only">Remove image</span>
+                    </Button>
+                </>
             ) : (
-              <div className="text-center text-muted-foreground p-4">
+              <div 
+                className="text-center text-muted-foreground p-4 cursor-pointer"
+                onClick={handleUploadClick}
+              >
                 <FileUp className="mx-auto h-12 w-12" />
                 <p>Click to upload</p>
               </div>
@@ -129,14 +153,14 @@ export function DashboardClient() {
           <Button
             onClick={handleAnalyzeClick}
             disabled={!file || isPending}
-            className="w-full"
+            className="w-full max-w-md mx-auto"
           >
             {isPending ? 'Analyzing...' : 'Analyze My Skin'}
           </Button>
         </CardContent>
       </Card>
 
-      <div className="lg:col-span-2 space-y-8">
+      <div className="space-y-8">
         {isPending && (
           <div className="space-y-8">
             <Card>
@@ -155,7 +179,8 @@ export function DashboardClient() {
                 <Skeleton className="h-8 w-1/2" />
                 <Skeleton className="h-4 w-3/4" />
               </CardHeader>
-              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <Skeleton className="h-48 w-full" />
                 <Skeleton className="h-48 w-full" />
                 <Skeleton className="h-48 w-full" />
               </CardContent>
@@ -227,8 +252,8 @@ export function DashboardClient() {
             </div>
         )}
 
-        {!isPending && !result && (
-          <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-lg h-full text-muted-foreground">
+        {!isPending && !result && !error && (
+          <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-lg h-full min-h-96 text-muted-foreground">
              <Bot size={48} className="mb-4" />
             <h3 className="text-xl font-semibold mb-2 font-headline">Awaiting Analysis</h3>
             <p>Your skin analysis results will appear here once you upload a photo.</p>
