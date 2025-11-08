@@ -40,7 +40,7 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <Card className="flex flex-col h-full overflow-hidden bg-card hover:bg-accent/50 transition-colors">
       <CardHeader>
-        <CardTitle className="text-lg leading-tight">{product.name}</CardTitle>
+        <CardTitle className="text-lg leading-tight h-10">{product.name}</CardTitle>
         <CardDescription>{product.brand}</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow space-y-4">
@@ -53,12 +53,12 @@ export function ProductCard({ product }: { product: Product }) {
             data-ai-hint={placeholder.imageHint}
           />
         </div>
-        <p className="text-sm text-muted-foreground line-clamp-3">
+        <p className="text-sm text-muted-foreground line-clamp-3 h-14">
           {product.description}
         </p>
         <div>
           <h4 className="font-semibold text-sm mb-1">Benefits for you:</h4>
-          <p className="text-sm text-foreground/80">{product.benefits}</p>
+          <p className="text-sm text-foreground/80 line-clamp-4 h-20">{product.benefits}</p>
         </div>
       </CardContent>
       <CardFooter>
