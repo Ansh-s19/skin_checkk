@@ -102,8 +102,8 @@ export function DashboardClient() {
   };
 
   return (
-    <div className="grid gap-8 grid-cols-1">
-      <Card>
+    <div className="grid gap-8 grid-cols-1 lg:grid-cols-2">
+      <Card className="lg:sticky top-6 self-start">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileUp /> Your Photo
@@ -112,7 +112,7 @@ export function DashboardClient() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div
-            className="aspect-square w-full max-w-md mx-auto rounded-lg border-2 border-dashed border-border flex items-center justify-center bg-muted/20 relative"
+            className="aspect-square w-full rounded-lg border-2 border-dashed border-border flex items-center justify-center bg-muted/20 relative"
           >
             {preview ? (
                 <>
@@ -153,7 +153,7 @@ export function DashboardClient() {
           <Button
             onClick={handleAnalyzeClick}
             disabled={!file || isPending}
-            className="w-full max-w-md mx-auto"
+            className="w-full"
           >
             {isPending ? 'Analyzing...' : 'Analyze My Skin'}
           </Button>
@@ -179,8 +179,7 @@ export function DashboardClient() {
                 <Skeleton className="h-8 w-1/2" />
                 <Skeleton className="h-4 w-3/4" />
               </CardHeader>
-              <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <Skeleton className="h-48 w-full" />
+              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Skeleton className="h-48 w-full" />
                 <Skeleton className="h-48 w-full" />
               </CardContent>
@@ -242,7 +241,7 @@ export function DashboardClient() {
                 </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {result.recommendations.products.map((product) => (
                         <ProductCard key={product.name} product={product} />
                     ))}
@@ -253,7 +252,7 @@ export function DashboardClient() {
         )}
 
         {!isPending && !result && !error && (
-          <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-lg h-full min-h-96 text-muted-foreground">
+          <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-lg h-full min-h-[50vh] lg:min-h-full text-muted-foreground">
              <Bot size={48} className="mb-4" />
             <h3 className="text-xl font-semibold mb-2 font-headline">Awaiting Analysis</h3>
             <p>Your skin analysis results will appear here once you upload a photo.</p>

@@ -21,10 +21,20 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { useState, useEffect } from 'react';
 
 export function ProductCard({ product }: { product: Product }) {
   const { isFavorite, addFavorite, removeFavorite } = useApp();
   const isFav = isFavorite(product.name);
+  const [placeholder, setPlaceholder] = useState<typeof PlaceHolderImages[0] | null>(null);
+
+  useEffect(() => {
+    // This ensures the random selection only happens on the client-side
+    // to avoid hydration mismatches between server and client renders.
+    setPlaceholder(
+      PlaceHolderImages[Math.floor(Math.random() * PlaceHolderImages.length)]
+    );
+  }, []);
 
   const toggleFavorite = () => {
     if (isFav) {
@@ -34,9 +44,6 @@ export function ProductCard({ product }: { product: Product }) {
     }
   };
 
-  const placeholder =
-    PlaceHolderImages[Math.floor(Math.random() * PlaceHolderImages.length)];
-
   return (
     <Card className="flex flex-col h-full overflow-hidden bg-card hover:bg-accent/50 transition-colors">
       <CardHeader>
@@ -44,14 +51,16 @@ export function ProductCard({ product }: { product: Product }) {
         <CardDescription>{product.brand}</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow space-y-4">
-        <div className="aspect-square relative w-full rounded-md overflow-hidden">
-          <Image
-            src={placeholder.imageUrl}
-            alt={product.name}
-            fill
-            className="object-cover"
-            data-ai-hint={placeholder.imageHint}
-          />
+        <div className="aspect-square relative w-full rounded-md overflow-hidden bg-muted">
+          {placeholder && (
+            <Image
+              src={placeholder.imageUrl}
+              alt={product.name}
+              fill
+              className="object-cover"
+              data-ai-hint={placeholder.imageHint}
+            />
+          )}
         </div>
         <p className="text-sm text-muted-foreground line-clamp-3 h-14">
           {product.description}
