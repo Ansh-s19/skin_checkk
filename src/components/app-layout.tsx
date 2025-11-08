@@ -81,7 +81,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen w-full flex">
-      <aside className="hidden md:flex flex-col w-64 bg-card text-card-foreground border-r">
+      <aside className="hidden md:flex flex-col w-64 bg-card text-card-foreground border-r fixed h-screen">
         <div className="p-4 border-b flex justify-between items-center">
           <Logo />
         </div>
@@ -151,8 +151,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           )}
         </div>
       </aside>
-      <div className="flex-1 flex flex-col">
-        <header className="md:hidden flex items-center justify-between p-4 border-b bg-card">
+      <div className="flex-1 flex flex-col md:ml-64">
+        <header className="md:hidden flex items-center justify-between p-4 border-b bg-card sticky top-0 z-10">
            <Logo />
           <nav className="flex gap-2 items-center">
              {navItems.map((item) => (
