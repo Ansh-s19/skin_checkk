@@ -163,7 +163,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   </Link>
                </Button>
              ))}
-             {user && (
+             {isUserLoading ? (
+                <div className="h-8 w-8 bg-muted rounded-full animate-pulse" />
+             ) : user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <Avatar className="h-8 w-8">
@@ -186,6 +188,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                      </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
+             ) : (
+                <Button asChild size="sm" variant="outline">
+                    <Link href="/login">Login</Link>
+                </Button>
              )}
           </nav>
         </header>
