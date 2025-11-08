@@ -1,3 +1,34 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "product-1",
+      "description": "A bottle of cleanser",
+      "imageUrl": "https://images.unsplash.com/photo-1642505172719-74bd172a15ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjbGVhbnNlciUyMGJvdHRsZXxlbnwwfHx8fDE3NjI1MTUwNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cleanser bottle"
+    },
+    {
+      "id": "product-2",
+      "description": "A jar of moisturizer",
+      "imageUrl": "https://images.unsplash.com/photo-1605204768985-81bad5fd9d79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bW9pc3R1cml6ZXIlMjBjcmVhbXxlbnwwfHx8fDE3NjI1OTQ3OTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "moisturizer cream"
+    },
+    {
+      "id": "product-3",
+      "description": "A bottle of serum",
+      "imageUrl": "https://images.unsplash.com/photo-1714041691623-35d1b8c5e28b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzZXJ1bSUyMGJvdHRsZXxlbnwwfHx8fDE3NjI0OTMwNjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "serum bottle"
+    },
+    {
+      "id": "product-4",
+      "description": "A tube of sunscreen",
+      "imageUrl": "https://images.unsplash.com/photo-1642155973299-75cb601667f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdW5zY3JlZW4lMjB0dWJlfGVufDB8fHx8MTc2MjU5NDc5Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sunscreen tube"
+    },
+    {
+      "id": "product-5",
+      "description": "A bottle of face oil",
+      "imageUrl": "https://images.unsplash.com/photo-1600428865979-b3c26265fa9a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmYWNlJTIwb2lsfGVufDB8fHx8MTc2MjU5NDc5Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "face oil"
+    }
+  ]
 }
