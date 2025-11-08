@@ -38,7 +38,7 @@ export function ProductCard({ product }: { product: Product }) {
     PlaceHolderImages[Math.floor(Math.random() * PlaceHolderImages.length)];
 
   return (
-    <Card className="flex flex-col h-full overflow-hidden">
+    <Card className="flex flex-col h-full overflow-hidden bg-card hover:bg-accent/50 transition-colors">
       <CardHeader>
         <CardTitle className="text-lg leading-tight">{product.name}</CardTitle>
         <CardDescription>{product.brand}</CardDescription>

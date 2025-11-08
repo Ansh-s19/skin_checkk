@@ -35,8 +35,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen w-full flex">
-      <aside className="hidden md:flex flex-col w-64 bg-primary text-primary-foreground border-r border-primary/20">
-        <div className="p-4 border-b border-primary/20">
+      <aside className="hidden md:flex flex-col w-64 bg-card text-card-foreground border-r">
+        <div className="p-4 border-b">
           <Logo />
         </div>
         <nav className="flex-1 p-4 space-y-2">
@@ -48,8 +48,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               className={cn(
                 'w-full justify-start',
                 pathname === item.href
-                  ? 'bg-accent text-accent-foreground'
-                  : 'hover:bg-primary/20'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'hover:bg-accent hover:text-accent-foreground'
               )}
             >
               <Link href={item.href}>
@@ -61,11 +61,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </nav>
       </aside>
       <div className="flex-1 flex flex-col">
-        <header className="md:hidden flex items-center justify-between p-4 border-b">
-           <Logo className="text-primary-foreground" />
+        <header className="md:hidden flex items-center justify-between p-4 border-b bg-card">
+           <Logo />
           <nav className="flex gap-2">
              {navItems.map((item) => (
-               <Button key={item.href} asChild variant="ghost" size="icon" className={cn(pathname === item.href && "bg-accent text-accent-foreground")}>
+               <Button key={item.href} asChild variant="ghost" size="icon" className={cn(pathname === item.href && "bg-primary text-primary-foreground")}>
                   <Link href={item.href}>
                     <item.icon className="h-5 w-5" />
                     <span className="sr-only">{item.label}</span>
